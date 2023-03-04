@@ -5,6 +5,35 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  margin: -15px;
+}
+
+.purple {
+  margin: 0;
+}
+
+.Main-title {
+  color: rgb(139, 139, 8);
+  font-size: 3em;
+}
+
+.login-box {
+  margin-left: 1.5em;
+  min-width: 15em;
+}
+
+.login-label {
+  min-width: 8em;
+  display: inline-table;
+  font-size: 0.6em;
+}
+
+.prompt {
+  font-size: 1em;
+}
+
+.login-button {
+  margin: 0.5em;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -19,7 +48,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: top;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -35,4 +64,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+h1 {
+  margin: 0.5em;
 }
