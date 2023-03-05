@@ -18,9 +18,7 @@ function App() {
         <p>
           Welcome to a world of better beverages.
         </p>
-        <div className='purple'>
         <LoginBox />
-        </div>
       </header>
     </div>
   );
@@ -32,16 +30,17 @@ class LoginBox extends React.Component {
     this.state = {
       0: '', 
       1: '',
-      display: LoginStates.Login
+      display: LoginStates.Login,
+      loggedin: false
     }
     this.handler = this.handler.bind(this);
   }
 
-  handler(prompt, ev) {
+  async handler(prompt, ev) {
     this.setState((prev) => {return({...prev, [prompt]: ev.target.value})})
     if (ev.key === 'Enter') {
       if (this.state.display === LoginStates.Login) {
-        this.log_in();
+        await this.log_in();
       }
       else if (this.state.display === LoginStates.Reset) {
         this.handle_reset();
@@ -53,12 +52,14 @@ class LoginBox extends React.Component {
 
   }
 
-  log_in() {
+  async log_in() {
     if (this.state.display !== LoginStates.Login) {
       this.setState(prev => {return({...prev, display: LoginStates.Login})});
     }
     else {
-      logic.log_in(this.state[0], this.state[1]);
+      let suc = await logic.log_in(this.state[0], this.state[1]);
+      console.log('succ: ', suc);
+      this.setState(prev => {return({...prev, loggedin: suc})});
     }
   }
 
@@ -81,6 +82,7 @@ class LoginBox extends React.Component {
   }
 
   render() {
+    if (!this.state.loggedin) {
     let page;
     if (this.state.display === LoginStates.Login) {
       page = <LoginPage state={{0: this.state[0], 1: this.state[1]}}
@@ -101,6 +103,8 @@ class LoginBox extends React.Component {
             handle_reset={this.handle_reset.bind(this)} />  
       </div>)
     return to_return;
+  }
+  return (<h1>You're logged in pal</h1>)
   }
 }
 
@@ -174,7 +178,7 @@ class LoginItem extends React.Component {
         <label>{this.props.prompt}</label>
       </div>
       <div className='login-label'>
-        <input className='login-box' value={this.props.value}
+        <input className='login-box login-input' value={this.props.value}
           onChange={(ev)=>{
             this.props.handler(this.props.set_key, ev)}
           }

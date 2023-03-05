@@ -8,8 +8,10 @@
   margin: -15px;
 }
 
-.purple {
-  margin: 0;
+.login-button {
+  border-radius: 12px;
+  background-color: lightgrey;
+  border: none;
 }
 
 .Main-title {
@@ -18,8 +20,12 @@
 }
 
 .login-box {
-  margin-left: 1.5em;
   min-width: 15em;
+  border-radius: 4px;
+}
+
+.login-input {
+  background-color: lightgrey;
 }
 
 .login-label {
