@@ -1,0 +1,28 @@
+.login-prompt {
+    text-align: center;
+}
+
+.login-item-div {
+    display: flex;
+    justify-content: space-around;
+}
+
+.login-button {
+    font-size: 2vh;
+}
+
+.login-input {
+    font-size: 2vh;
+}
+
+.login-label {
+    font-size: 2vh;
+}
+
+.login-div {
+    min-width: 20vh;
+}
+
+.login-form {
+    min-height: 12vh;
+}

@@ -1,0 +1,116 @@
+:root {
+    --border-colour: #a9a9a9
+}
+
+.friend-tile {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #282c34;
+    width: calc(100%-5px);
+    border-width: 5px;
+    border-style: double;
+    border-color: var(--border-colour);
+}
+
+img {
+    margin: 10px;
+}
+
+.friend-picture {
+    max-width: 4vw;
+    width: 150px;
+    float: left;
+}
+
+.option-picture {
+    max-width: 3vmin;
+    filter: invert(39%) sepia(28%) saturate(317%) hue-rotate(173deg) brightness(89%) contrast(83%);
+}
+
+.dummy-div {
+    min-width: 10%;
+    background-color: green;
+}
+
+.friend-name {
+    height: 100%;
+    font-size: 2vw;
+    text-align: center;
+    vertical-align:middle;
+    user-select: none;
+    color: #a8b8ca;
+}
+
+.search-div {
+    background-color: #282c34;
+    width: calc(100%-5px);
+    border-width: 5px;
+    border-style: double;
+    border-color: #a9a9a9;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-label-div {
+    width: 100%;
+    text-align: center;
+    height: 3em
+
+}
+
+.search-label {
+    font-size: 2.5vmin;
+    margin: -0.1em;
+    color: #a8b8ca
+}
+
+.search-box-div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4em;
+    
+}
+
+.search-box {
+    font-size: 1.3vmin;
+    color: #a8b8ca;
+    background-color: #565f70;
+    border-width: 2px;
+    max-width: 60%;
+    border-style: double;
+    border-color: var(--border-colour);
+    
+}
+
+.search-button {
+    font-size: 1.3vmin;
+    color: #a8b8ca;
+    background-color: #282c34;
+    border-width: 2px;
+    border-style: double;
+    border-color: #a9a9a9;
+    max-width: 30%;
+}
+
+.friend-pane {
+    display: flex;
+    flex-direction: column;
+    background-color: #13161d;
+    border-width: 0px;
+    border-style: solid;
+    border-color: black;
+}
+
+.friend-tab {
+    display: flex;
+    flex-direction: column;
+    height: 100%-2px;
+    width: 20vw;
+    max-width: 250px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--border-colour);
+}

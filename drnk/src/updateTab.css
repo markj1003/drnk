@@ -1,0 +1,57 @@
+:root {
+    --text-colour: #a8b8ca;
+    --background-colour: #282c34
+}
+
+.update-tab {
+    color: var(--text-colour);
+    border-style: solid;
+    border-radius: 2px;
+    width: 25%
+}
+
+.update-header {
+    border-style: double;
+    border-radius: 2px;
+    text-align: center;
+    height: 2.5vh;
+}
+
+.update-head-text {
+    font-size: 1.5vh;
+    margin: 0;
+    align-self: center;
+}
+
+.new-room-div {
+    vertical-align: middle;
+    text-align: center;
+    color: var(--text-colour);
+    bottom: 0;
+    height: 5%;
+    display: flex;
+    vertical-align: bottom;
+    border-style: double;
+    width: 100%;
+}
+
+.filler {
+    width: 100%;
+    height: 55%;
+}
+
+.new-room-text-div {
+    text-align: center;
+    width: 80%;
+}
+
+.new-room-picture {
+    max-width: 25%;
+    filter: invert(80%) sepia(41%) saturate(125%) hue-rotate(171deg) brightness(84%) contrast(90%);
+}
+
+.fix-width {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}

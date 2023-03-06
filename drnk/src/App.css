@@ -28,7 +28,7 @@
   background-color: lightgrey;
 }
 
-.login-label {
+.login-div {
   min-width: 8em;
   display: inline-table;
   font-size: 0.6em;
@@ -74,4 +74,12 @@
 
 h1 {
   margin: 0.5em;
+}
+
+.background {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100vh;
+  background-color: #282c34;
 }
