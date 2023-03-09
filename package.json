@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "mdb-react-ui-kit": "^5.1.0",
+    "popper": "^1.0.1",
+    "react-popper": "^2.3.0",
+    "sass": "^1.58.3"
+  }
+}

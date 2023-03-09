@@ -1,30 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import "./custom_styles/custom.scss";
+//import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import Item from './homePage';
+//to render a single component by default, import it as Item
+//otherwise, set DebugMode to false to run the app
+import Item from './master';
+const DebugMode = Item;
 
 document.title = "onlyDrinks";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const DebugMode = false;
-
 if (!DebugMode) {
 root.render(
   <React.StrictMode>
-    <div className='background'>
     <App />
-    </div>
   </React.StrictMode>
 );}
+
 else {
   root.render(
     <React.StrictMode>
-      <div className='background'>
-      <DebugMode state='hello' handler={()=>{}}/>
-      </div>
+      <DebugMode/>
     </React.StrictMode>
   )
 }
