@@ -1,0 +1,11 @@
+.user-tab {
+    height: 2em;
+}
+
+.user-img {
+    max-height: 100%;
+}
+
+.clickable {
+    cursor: pointer;
+}

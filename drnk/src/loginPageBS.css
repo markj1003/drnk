@@ -1,0 +1,15 @@
+.main-header {
+    font-size: 4.5em;
+}
+
+.bg-card {
+    background-color: #E8EFFA;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.w-card {
+    width: 24em;
+}
