@@ -4,6 +4,7 @@ export const getUserStatuses = createAsyncThunk(
     'users/getOnlineStatuses',
     async (args, { rejectWithValue}) => {
         return fetch(
+            // todo: this is a temporary mock server. Replace with server endpoint url for online statuses when done
             `https://3ee3c178-6e28-4ea3-b9d5-588358d9ee68.mock.pstmn.io/localhost:3000/online`
             ).then((res) => {
                 if (!res.ok) {
