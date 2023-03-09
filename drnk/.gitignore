@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+/drnk/node_modules
+/server
 /.pnp
 .pnp.js
 
