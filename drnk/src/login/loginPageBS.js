@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Stack from 'react-bootstrap/Stack';
-import logo from '../assets/logo.svg';
+import Logo from '../assets/beerSVG';
 import Tab from 'react-bootstrap/Tab';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
@@ -28,7 +28,8 @@ class WelcomeInfo extends React.Component {
         return <Container className="text-dark container-fluid text-center p-0">
             <Stack className="p-0 d-flex justify-content-center">
                 <h1 className="text-primary main-header">onlyDrinks</h1>
-                <img src={logo} className="App-logo" alt="logo" />
+                <Logo/>
+                {/*<img src={logo} className="active svg" alt="logo" /> */}
                 <h3>Welcome to a world of better beverages!</h3>
             </Stack>
         </Container>
