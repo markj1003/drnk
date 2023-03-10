@@ -5,9 +5,9 @@ import Image from 'react-bootstrap/Image';
 import UserPic from './assets/default_profile.svg';
 import './navbar.css';
 import {useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import {Outlet, useNavigate} from "react-router-dom";
 
-export default function SiteNavBar() {
+function SiteNavBar() {
     const loggedIn = useSelector((state) => state.login.loggedIn);
     const navigate = useNavigate();
     const onClick = (ev) => {
@@ -39,4 +39,13 @@ function UserInfoNavBar(props) {
     else {
         return <NavBar.Text className='text-primary clickable' onClick={this.userClick}>Log in or sign up!</NavBar.Text>
     }
+}
+
+export default function NavbarWrapper() {
+    return (
+        <>
+            <SiteNavBar />
+            <Outlet />
+        </>
+    );
 }

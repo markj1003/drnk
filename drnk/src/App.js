@@ -4,44 +4,8 @@ import { Provider } from 'react-redux';
 import store from './store';
 import useIntervalHook  from './hooks/useIntervalHook';
 import { getUserStatuses } from "./storeSlices/onlineStatusesSlice";
-import {createBrowserRouter, Outlet, RouterProvider} from "react-router-dom";
-import {StyledLoginForm, StyledSignupForm, StyledResetForm} from "./forms/login/LoginForms";
-import SiteNavbar from "./navbar";
-import LoginOrHomePage from "./LoginOrHomepage";
-
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <NavbarWrapper />,
-        children: [
-            {
-                path: "/",
-                element: <LoginOrHomePage />
-            },
-            {
-                path: "/auth/login",
-                element: <StyledLoginForm />
-            },
-            {
-                path: "/auth/signup",
-                element: <StyledSignupForm />
-            },
-            {
-                path: "/auth/reset",
-                element: <StyledResetForm />
-            }
-        ]
-    }
-])
-
-function NavbarWrapper() {
-    return (
-      <>
-          <SiteNavbar />
-          <Outlet />
-      </>
-    );
-}
+import {RouterProvider} from "react-router-dom";
+import {router} from "./routes";
 
 function App() {
   //this will get the online statuses of all your friends every 2 mins
