@@ -21,7 +21,7 @@ export const getUserStatuses = createAsyncThunk(
 export const onlineStatusesSlice = createSlice({
     name: 'onlineStatuses',
     initialState: {
-        status: null,
+        loadingStatus: null,
         "myUserName": 1,
         friendStatuses: {}
     },
@@ -36,14 +36,14 @@ export const onlineStatusesSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(getUserStatuses.pending, (state, _) => {
-                state.status = 'loading'
+                state.loadingStatus = 'loading'
             })
             .addCase(getUserStatuses.fulfilled, (state, payload) => {
                 state.friendStatuses = payload.payload
-                state.status = 'success'
+                state.loadingStatus = 'success'
             })
             .addCase(getUserStatuses.rejected, (state, _) => {
-                state.status = 'failed'
+                state.loadingStatus = 'failed'
             })
     }
     });
