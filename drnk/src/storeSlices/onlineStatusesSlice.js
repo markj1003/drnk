@@ -22,7 +22,7 @@ export const onlineStatusesSlice = createSlice({
     name: 'onlineStatuses',
     initialState: {
         loadingStatus: null,
-        "myUserName": 1,
+        "appearOffline": false,
         friendStatuses: {}
     },
     reducers: {
