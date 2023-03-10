@@ -1,15 +1,18 @@
+@import "friend/FriendList.css";
+
 .App {
   text-align: center;
 }
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
   margin: -15px;
 }
 
-.purple {
-  margin: 0;
+.login-button {
+  border-radius: 12px;
+  background-color: lightgrey;
+  border: none;
 }
 
 .Main-title {
@@ -18,11 +21,15 @@
 }
 
 .login-box {
-  margin-left: 1.5em;
   min-width: 15em;
+  border-radius: 4px;
 }
 
-.login-label {
+.login-input {
+  background-color: lightgrey;
+}
+
+.login-div {
   min-width: 8em;
   display: inline-table;
   font-size: 0.6em;
@@ -68,4 +75,12 @@
 
 h1 {
   margin: 0.5em;
+}
+
+.background {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100vh;
+  background-color: #282c34;
 }

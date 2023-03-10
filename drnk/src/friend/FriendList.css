@@ -1,0 +1,22 @@
+
+.friendItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3%;
+    padding-left: 3%;
+}
+
+.friendPP {
+    border: 2px solid powderblue;
+    border-radius: 50%;
+    height: 7%;
+    width: 7%;
+}
+
+.friendOnlineStatus {
+    border-radius: 50%;
+    height: 2%;
+    width: 2%
+}
