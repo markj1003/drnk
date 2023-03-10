@@ -1,6 +1,6 @@
 import React from "react";
-import LoginPage from "./loginPageBS";
-import HomePage from "./homePageBS";
+import LoginPage from "./login/loginPageBS";
+import HomePage from "./homepage/homePageBS";
 
 
 export default class Master extends React.Component {

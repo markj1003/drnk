@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
-import Toast from 'react-bootstrap/Toast';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Stack from 'react-bootstrap/Stack';
-import logo from './assets/logo.svg';
+import logo from '../assets/logo.svg';
 import Tab from 'react-bootstrap/Tab';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import "./homePageBS.css"
 import Navbar from 'react-bootstrap/Navbar'
-import SiteNavbar from "./navbar";
+import SiteNavbar from "../navbar/navbar";
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas'; 

@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom/client';
 import "./custom_styles/custom.scss";
 //import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css';
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 //to render a single component by default, import it as Item
 //otherwise, set DebugMode to false to run the app
 import Item from './master';
-const DebugMode = Item;
-
+const DebugMode = false;
 document.title = "onlyDrinks";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -33,3 +33,4 @@ else {
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+

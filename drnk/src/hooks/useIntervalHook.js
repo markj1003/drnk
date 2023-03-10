@@ -11,6 +11,7 @@ export default function useIntervalHook(callback, delay) {
     // Set up the interval.
     return useEffect(() => {
         function tick() {
+            console.log('tick');
             savedCallback.current();
         }
         if (delay !== null) {

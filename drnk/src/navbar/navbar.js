@@ -2,7 +2,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import NavBar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image';
-import UserPic from './assets/default_profile.svg';
+import UserPic from '../assets/default_profile.svg';
 import './navbar.css';
 
 export default class SiteNavbar extends React.Component {

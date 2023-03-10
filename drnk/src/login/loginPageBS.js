@@ -5,13 +5,13 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Stack from 'react-bootstrap/Stack';
-import logo from './assets/logo.svg';
+import logo from '../assets/logo.svg';
 import Tab from 'react-bootstrap/Tab';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import "./loginPageBS.css"
-import { new_account, reset, log_in } from "./interface";
-import SiteNavbar from "./navbar";
+import { new_account, reset, log_in } from "../shared_components/interface";
+import SiteNavbar from "../navbar/navbar";
 
 /*
 NOTE: message passing is not consistent here. some functions still pass bare strings,
@@ -78,7 +78,7 @@ class FormTemplate extends React.Component {
                 <Form onSubmit={this.onSubmit}>
                     <h1 className="text-primary">{this.state.prompt}</h1>
                     {this.state.items.map((item)=>(
-                        <Form.Group className="mb-4">
+                        <Form.Group className="mb-4" key={item[1]}>
                         <Form.Label>{item[0]}</Form.Label>
                         <Form.Control name={item[1]} placeholder={"Enter " +  item[1]}
                         value={this.state[item[1]]} onChange={this.handleChange}  />

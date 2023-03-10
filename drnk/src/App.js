@@ -15,7 +15,7 @@ function App() {
   }, 120000);
   return (
     <Provider store={store}>
-      return (<div className='background'><Master /></div>)
+      <div className='background'><Master /></div>
     </Provider>
   );
 }
