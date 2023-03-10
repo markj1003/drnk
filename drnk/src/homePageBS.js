@@ -1,17 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from 'react-bootstrap/Button';
-import Toast from 'react-bootstrap/Toast';
 import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import Stack from 'react-bootstrap/Stack';
-import logo from './assets/logo.svg';
-import Tab from 'react-bootstrap/Tab';
 import Form from 'react-bootstrap/Form';
-import Card from 'react-bootstrap/Card';
 import "./homePageBS.css"
 import Navbar from 'react-bootstrap/Navbar'
-import SiteNavbar from "./navbar";
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas'; 
@@ -33,9 +26,6 @@ export default class HomePage extends React.Component {
     render() {
         return <div>
             <Stack className="bg-light d-flex align-top">
-            {/*loggedIn would pass the user details in a deployment build, just set to true for now
-                probably we move this to the redux store instead though */}
-            <SiteNavbar clickHandler={this.clickHandler} loggedIn={true} />
             <div className="flex-fill">
                 {/* the main pane will go here */}
             <p>Hello</p>

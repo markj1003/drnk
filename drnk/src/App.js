@@ -7,7 +7,7 @@ import { getUserStatuses } from "./storeSlices/onlineStatusesSlice";
 import {createBrowserRouter, Outlet, RouterProvider} from "react-router-dom";
 import {StyledLoginForm, StyledSignupForm, StyledResetForm} from "./forms/login/LoginForms";
 import SiteNavbar from "./navbar";
-import Welcome from "./forms/login/Welcome";
+import LoginOrHomePage from "./LoginOrHomepage";
 
 const router = createBrowserRouter([
     {
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <Welcome />
+                element: <LoginOrHomePage />
             },
             {
                 path: "/auth/login",
@@ -37,7 +37,7 @@ const router = createBrowserRouter([
 function NavbarWrapper() {
     return (
       <>
-          <SiteNavbar clickHandler={() => 1} loggedIn={false} />
+          <SiteNavbar />
           <Outlet />
       </>
     );
