@@ -4,11 +4,21 @@ import Col from "react-bootstrap/Col";
 import GenericForm from "../Form";
 import Card from "react-bootstrap/Card";
 import {Link} from "react-router-dom";
+import {log_in, new_account} from "../../interface";
+import store from "../../store";
+import {setLoggedIn} from "../../storeSlices/loginSlice";
 
 function LoginForm() {
+    const onSubmit = async (ev, userInput) => {
+        let token = await log_in(userInput["Username"], userInput["Password"]);
+        if (token) {
+            store.dispatch(setLoggedIn(token))
+            console.log("logged in");
+        }
+    }
     return (
         <React.Fragment>
-            <GenericForm prompt={"Log in"} inputFields={["Username", "Password"]}/>
+            <GenericForm prompt={"Log in"} inputFields={["Username", "Password"]} onSubmit={onSubmit}/>
             <Row className="justify-content-center">
                 <Col>
                     <Link to={"/auth/reset"} className='link-primary'>Forgot password?</Link>
@@ -24,6 +34,17 @@ function LoginForm() {
 }
 
 function SignupForm() {
+    const onSubmit = (ev, userInputs) => {
+        if (userInputs["Password"] != userInputs["Confirm Password"]) {
+            console.log("passwords don't match");
+            return;
+        }
+        let token = new_account(userInputs["Username"], userInputs["Password"]);
+        if (token) {
+            store.dispatch(setLoggedIn(token))
+            console.log("signed up")
+        }
+    }
     return (
         <React.Fragment>
             <GenericForm prompt={"Sign up"} inputFields={["Username", "Email", "Password", "Confirm Password"]} />
