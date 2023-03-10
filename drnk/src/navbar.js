@@ -32,12 +32,12 @@ function UserInfoNavBar(props) {
             <div className='user-tab d-flex justify-content-between align-items-center clickable'>
                 <Image src={UserPic} className='user-img' />
                 <p>  _ </p>
-                <NavBar.Text className='text-primary' onClick={(ev) => this.userClick({type:'user'})}>
+                <NavBar.Text className='text-primary'>
                     Kwang</NavBar.Text>
             </div>)
     }
     else {
-        return <NavBar.Text className='text-primary clickable' onClick={this.userClick}>Log in or sign up!</NavBar.Text>
+        return <NavBar.Text className='text-primary clickable'>Log in or sign up!</NavBar.Text>
     }
 }
 
