@@ -17,7 +17,7 @@ function SiteNavBar() {
         <NavBar className="bg-dark" >
             <Container fluid className='px-3'>
                 <NavBar.Brand onClick={onClick}
-                              name="welcome" className="text-primary clickable">onlyDrinks</NavBar.Brand>
+                              name="welcome" className="text-primary clickable">test</NavBar.Brand>
                 <NavBar.Collapse className="justify-content-end">
                     <UserInfoNavBar loggedIn={loggedIn} />
                 </NavBar.Collapse>
@@ -43,9 +43,9 @@ function UserInfoNavBar(props) {
 
 export default function NavbarWrapper() {
     return (
-        <>
+        <div className={"root"}>
             <SiteNavBar />
             <Outlet />
-        </>
+        </div>
     );
 }
