@@ -23,6 +23,7 @@ export async function log_in(username, password) {
 
 export function reset(username) {
     console.log('Reset password for: ' + username);
+    return true;
 }
 
 export function new_account(username, password) {

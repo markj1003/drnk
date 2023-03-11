@@ -1,0 +1,7 @@
+let's keep update notes here
+
+commit bottom-buttons:
+-friends and rooms buttons moved to bottom corners
+-functionality added for log in, sign up, reset pages (all now attempt to submit, user is 
+    prompted if their submission doesn't result in successful log in)
+-when logged in, user icon in top navbar is now interactive
