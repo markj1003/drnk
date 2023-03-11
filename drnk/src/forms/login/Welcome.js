@@ -1,5 +1,6 @@
 import Stack from "react-bootstrap/Stack";
 import logo from "../../assets/logo.svg";
+import Beer from "../../assets/beerSVG"
 import Container from "react-bootstrap/Container";
 import React from "react";
 import Button from "react-bootstrap/Button";
@@ -11,7 +12,7 @@ function WelcomeInfo() {
         <Container className="text-dark container-fluid text-center p-0">
             <Stack className="p-0 d-flex justify-content-center">
                 <h1 className="text-primary main-header">onlyDrinks</h1>
-                <img src={logo} className="App-logo" alt="logo" />
+                <Beer />
                 <h3>Welcome to a world of better beverages!</h3>
             </Stack>
         </Container>
