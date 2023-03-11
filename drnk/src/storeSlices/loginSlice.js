@@ -11,7 +11,7 @@ export const loginSlice = createSlice({
             state.token = action.payload;
         },
         setLoggedOut: (state, _) => {
-            state.loggedOut = false;
+            state.loggedIn = false;
             state.token = null;
         }
     }});

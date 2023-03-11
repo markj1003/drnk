@@ -22,15 +22,12 @@ export const onlineStatusesSlice = createSlice({
     name: 'onlineStatuses',
     initialState: {
         loadingStatus: null,
-        "appearOffline": false,
+        appearOffline: false,
         friendStatuses: {}
     },
     reducers: {
-        setOnline: (state, _) => {
-            state.myUserName = 1
-        },
-        setOffline: (state, _) => {
-            state.myUserName = 0
+        toggleAppearOffline: (state, _) => {
+            state.appearOffline = !state.appearOffline;
         }
     },
     extraReducers: (builder) => {
@@ -48,5 +45,5 @@ export const onlineStatusesSlice = createSlice({
     }
     });
 
-export const { setOnline, setOffline } = onlineStatusesSlice.actions;
+export const { toggleAppearOffline } = onlineStatusesSlice.actions;
 export default onlineStatusesSlice.reducer;

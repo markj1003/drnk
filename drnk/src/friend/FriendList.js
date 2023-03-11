@@ -1,4 +1,3 @@
-import {useSelector} from "react-redux";
 import FriendItem from "./FriendItem";
 
 export default function FriendList() {

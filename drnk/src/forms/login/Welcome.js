@@ -1,5 +1,4 @@
 import Stack from "react-bootstrap/Stack";
-import logo from "../../assets/logo.svg";
 import Beer from "../../assets/beerSVG"
 import Container from "react-bootstrap/Container";
 import React from "react";

@@ -7,6 +7,10 @@ import './navbar.css';
 import {useSelector} from "react-redux";
 import {Outlet, useNavigate} from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
+import {OnlineStatus} from "./friend/FriendItem";
+import {toggleAppearOffline} from "./storeSlices/onlineStatusesSlice";
+import store from "./store";
+import {setLoggedOut} from "./storeSlices/loginSlice";
 
 function SiteNavBar() {
     const loggedIn = useSelector((state) => state.login.loggedIn);
@@ -31,16 +35,26 @@ function SiteNavBar() {
             
 
 function UserInfoNavBar(props) {
+    const appearOffline = useSelector((state) => state.onlineStatuses.appearOffline)
+    const logOut = () => {
+        store.dispatch(setLoggedOut());
+        if (appearOffline) {
+            store.dispatch(toggleAppearOffline());
+        }
+    }
     if (props.loggedIn) {
         return (
            <Dropdown drop='start'>
                 <Dropdown.Toggle className="pr-2 user-tab d-flex justify-content-between align-items-center">
                     <Image src={UserPic} className='pr-2 user-img' />
+                    <OnlineStatus online={props.loggedIn && !appearOffline} />
                         Kwang
+
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                     <Dropdown.Item>View profile</Dropdown.Item>
-                    <Dropdown.Item>Log out</Dropdown.Item>
+                    <Dropdown.Item onClick={() => store.dispatch(toggleAppearOffline())}>Appear {appearOffline ? "Online" : "Offline"} </Dropdown.Item>
+                    <Dropdown.Item onClick={logOut}>Log out</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>)
     }

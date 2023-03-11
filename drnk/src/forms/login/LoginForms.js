@@ -10,24 +10,22 @@ import store from "../../store";
 import {setLoggedIn} from "../../storeSlices/loginSlice";
 import './LoginForm.css'
 
-function LoginForm() {
-    const navigate = useNavigate();
-
-    const [showToast, setShowToast] = useState(false);
-    const toggleToast = () => setShowToast(!showToast);
-
-    const giveToast = () => {
-        return <Toast show={showToast} onClose={toggleToast} className="toast-top-right"
-                autohide="true">
+function GiveToast(props) {
+    return (
+        <Toast show={props.showToast} onClose={() => props.setShowToast(!props.showToast)} className="toast-top-right" autohide="true">
             <Toast.Header className="d-flex justify-content-between">
-                <strong>Details not recognised</strong>
+                <strong>{props.header}</strong>
             </Toast.Header>
             <Toast.Body>
-                <p>Please try again or <Link to={'/auth/reset'}>reset your password.</Link></p>
+                <props.Body />
             </Toast.Body>
         </Toast>
-    }
+    );
+}
 
+function LoginForm() {
+    const navigate = useNavigate();
+    const [showToast, setShowToast] = useState(false);
     const onSubmit = async (ev, userInput) => {
         let token = await log_in(userInput["Username"], userInput["Password"]);
         if (token) {
@@ -37,12 +35,15 @@ function LoginForm() {
         }
         else {
             console.log('here')
-            toggleToast();
+            setShowToast(!showToast);
         }
     }
     return (
         <React.Fragment>
-            {giveToast()}
+            <GiveToast showToast={showToast} setShowToast={setShowToast}
+                       header={"Details not recognised"}
+                       Body={() => <p>Please try again or <Link to={'/auth/reset'}>reset your password.</Link></p>}
+            />
             <GenericForm prompt={"Log in"} inputFields={["Username", "Password"]} onSubmit={onSubmit}/>
             <Row className="justify-content-center">
                 <Col>
@@ -60,28 +61,13 @@ function LoginForm() {
 
 function SignupForm() {
     const navigate = useNavigate();
-
     const [showToast, setShowToast] = useState(false);
-    const [errMessage, setError] = useState(false);
-    const toggleToast = () => setShowToast(!showToast);
-
-    const giveToast = () => {
-        return <Toast show={showToast} onClose={toggleToast} className="toast-top-right"
-                autohide="true">
-            <Toast.Header className="d-flex justify-content-between">
-                <strong>Signup Failed</strong>
-            </Toast.Header>
-            <Toast.Body>
-                <p>{errMessage}</p>
-            </Toast.Body>
-        </Toast>
-    }
-
+    const [errMessage, setError] = useState("");
     const onSubmit = (ev, userInputs) => {
-        if (userInputs["Password"] != userInputs["Confirm Password"]) {
+        if (userInputs["Password"] !== userInputs["Confirm Password"]) {
             console.log("passwords don't match");
             setError("Passwords don't match");
-            toggleToast();
+            setShowToast(!showToast);
             return;
         }
         let token = new_account(userInputs["Username"], userInputs["Password"]);
@@ -91,12 +77,15 @@ function SignupForm() {
             navigate('/');
         }
         else {
-            toggleToast();
+            setShowToast(!showToast);
         }
     }
     return (
         <React.Fragment>
-            {giveToast()}
+            <GiveToast showToast={showToast} setShowToast={setShowToast}
+                       header={"Signup Failed"}
+                       Body={() => <p>{errMessage}</p>}
+            />
             <GenericForm prompt={"Sign up"} inputFields={["Username", "Email", "Password", "Confirm Password"]} onSubmit={onSubmit} />
             <Row className="justify-content-center">
                 <Col>
@@ -110,31 +99,19 @@ function SignupForm() {
 }
 
 function ResetForm() {
-    const navigate = useNavigate();
     const [showToast, setShowToast] = useState(false);
-    const toggleToast = () => setShowToast(!showToast);
-
-    const giveToast = () => {
-        return <Toast show={showToast} onClose={toggleToast} className="toast-top-right"
-                autohide="true">
-            <Toast.Header className="d-flex justify-content-between">
-                <strong>Password reset submitted</strong>
-            </Toast.Header>
-            <Toast.Body>
-                <p>A reset link has been sent to your registered email address</p>
-            </Toast.Body>
-        </Toast>
-    }
-
     const onSubmit = (ev, userInputs) => {
         let token = reset(userInputs['Username']);
         if (token) {
-            toggleToast();
+            setShowToast(!showToast);
         }
     }
     return (
         <React.Fragment>
-            {giveToast()}
+            <GiveToast showToast={showToast} setShowToast={setShowToast}
+                       header={"Password reset submitted"}
+                       Body={() => <p>A reset link has been sent to your registered email address</p>}
+            />
             <GenericForm prompt={"Reset password"} inputFields={["Username"]} onSubmit={onSubmit} />
             <Row className="justify-content-center">
                 <Col>
