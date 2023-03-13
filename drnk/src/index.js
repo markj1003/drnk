@@ -8,6 +8,7 @@ import reportWebVitals from './reportWebVitals';
 
 //to render a single component by default, import it as Item
 //otherwise, set DebugMode to false to run the app
+import Item from './aboutUs'
 const DebugMode = false;
 
 document.title = "onlyDrinks";

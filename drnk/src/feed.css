@@ -1,0 +1,25 @@
+.profile {
+    max-width: 75px;
+}
+
+.name {
+    font-size: 150%;
+    margin-left: -15%;
+}
+
+.feed-caption {
+    margin-top: 15px;
+    font-size: large;
+}
+
+.bl-2 {
+    border-radius: 5px;
+}
+
+.feed-pic {
+    border: 1px solid #D0e1df;
+}
+
+.card-feed {
+    border: 1px solid #D0e1df;
+}

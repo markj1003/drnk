@@ -2,11 +2,13 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import NavBar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image';
-import UserPic from './assets/default_profile.svg';
+import UserPic from '../assets/default_profile.svg';
 import './navbar.css';
 import {useSelector} from "react-redux";
 import {Outlet, useNavigate} from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
+import Beer from '../assets/beerLogo';
+import { logout } from '../interface';
 
 function SiteNavBar() {
     const loggedIn = useSelector((state) => state.login.loggedIn);
@@ -17,20 +19,31 @@ function SiteNavBar() {
     return (
         <NavBar className="bg-dark" >
             <Container fluid className='px-3'>
-                <NavBar.Brand onClick={onClick}
-                              name="welcome" className="text-primary clickable">onlyDrinks</NavBar.Brand>
+                    <OnlyDrinksLogo onClick={onClick} />
                 <NavBar.Collapse className="justify-content-end">
-                    <UserInfoNavBar loggedIn={loggedIn} />
+                    <UserInfoNavBar onClick={onClick} loggedIn={loggedIn} />
                 </NavBar.Collapse>
             </Container>
         </NavBar>
     );
 }
- {/*<div 
-        className='user-tab d-flex justify-content-between align-items-center clickable'> */}
-            
+ 
+//todo: this doesn't scale to different viewport sizes
+function OnlyDrinksLogo(props) {
+    return (
+    <NavBar.Brand onClick={props.onClick}
+        name="welcome" className="text-primary clickable d-flex justify-content-center">
+            <Beer size='logo' /> 
+            <div className='pt-1'>
+                <span >onlyDrinks</span>
+            </div>
+            </NavBar.Brand>
+    )
+} 
 
 function UserInfoNavBar(props) {
+    const navigate = useNavigate();
+    
     if (props.loggedIn) {
         return (
            <Dropdown drop='start'>
@@ -39,13 +52,14 @@ function UserInfoNavBar(props) {
                         Kwang
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                    <Dropdown.Item>View profile</Dropdown.Item>
-                    <Dropdown.Item>Log out</Dropdown.Item>
+                    <Dropdown.Item onClick={() => navigate('/profile')}>View profile</Dropdown.Item>
+                    <Dropdown.Item onClick={() => navigate('/aboutUs')}>About onlyDrinks</Dropdown.Item>
+                    <Dropdown.Item onClick={() => logout()}>Log out</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>)
     }
     else {
-        return <NavBar.Text className='text-primary clickable'>Log in or sign up!</NavBar.Text>
+        return <NavBar.Text onClick={props.onClick} className='text-primary clickable'>Log in or sign up!</NavBar.Text>
     }
 }
 

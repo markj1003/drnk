@@ -12,7 +12,8 @@ $custom-theme-colors: (
     "tertiary": green,
     "warning": #e64d5e,
     "light": #faf3e8,
-    "dark": #252422
+    "dark": #252422,
+    "muted": #444444,
 );
 
 $theme-colors: map-merge($theme-colors, $custom-theme-colors );

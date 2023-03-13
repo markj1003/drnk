@@ -31,8 +31,6 @@ function LoginForm() {
     const onSubmit = async (ev, userInput) => {
         let token = await log_in(userInput["Username"], userInput["Password"]);
         if (token) {
-            store.dispatch(setLoggedIn(token))
-            console.log("logged in");
             navigate('/');
         }
         else {
