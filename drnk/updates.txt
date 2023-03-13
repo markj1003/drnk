@@ -8,3 +8,11 @@ commit bottom-buttons:
 
 commit added SVG logo:
 -look at the homepage! 
+
+commit lots:
+-profile pages
+-functional friends page 
+-example feed
+-cookies to remember log in
+-log out option
+-... probably more 
