@@ -34,14 +34,13 @@ function FeedItem(props) {
     return <Card className='card-feed'>
         <Card.Header>
             <Row>
-                <Col lg='2'>
+                <Col sm='auto' className="pr-0">
                     <Image src={props.details.profile} fluid thumbnail roundedCircle className="profile" />
                 </Col>
-                <Col lg='4' className="text-align-left d-flex justify-content-center flex-column">
+                <Col className="text-align-left d-flex justify-content-center flex-column">
                     <span className="name">{props.details.name}</span>
                 </Col>
-                <Col lg='4' />
-                <Col lg='2' className="d-flex justify-content-center flex-column">
+                <Col xs={{order: 12, span: 'auto'}} className="d-flex justify-content-center flex-column">
                     {props.details.time} ago
                 </Col >
             </Row>
@@ -49,13 +48,13 @@ function FeedItem(props) {
         <Card.Body className="pt-0 px-0">
             <Stack className="pt-0 mt-0">
                 <Image src={props.details.image} className='feed-pic' />
-                <Row className='feed-caption mx-0'> 
-                    <Col lg='8'>
+                <Row className='feed-caption align-items-center mx-0'> 
+                    <Col>
                         <div className="mt-1">
                             <span>{props.details.caption}</span>
                         </div>
                     </Col>
-                    <Col lg='4' className="d-flex justify-content-center">
+                    <Col sm='auto' lg={{order: 'last'}}>
                         <ButtonGroup className="bl-2">
                         <Button className='btn-secondary bl-2'>Cheers!</Button>
                         <Button className='btn-secondary bl-2'>Another please</Button>
@@ -69,13 +68,13 @@ function FeedItem(props) {
 
 export default function Feed() {
     const feedItems = getFeed();
-    return <Container className="mb-5">
+    return <Container className="feed">
         <Row>
             <Col lg='2'>
             </Col>
             <Col lg='8'>
                 <Stack gap='3'>
-                {feedItems.map((item) => <FeedItem details={item} />)}
+                {feedItems.map((item) => <FeedItem details={item} key={item.caption} />)}
                 </Stack>
             </Col>
             <Col lg='2'>

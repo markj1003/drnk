@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import { ProfileCard, StatsCard, DetailsCard, Rooms } from "./profileComponents";
 import { useSelector } from "react-redux";
 import Stack from 'react-bootstrap/Stack';
+import './profile.css';
 
 export default function PublicProfile() {
     const data = useLoaderData();
@@ -16,10 +17,10 @@ export default function PublicProfile() {
         </React.Fragment> 
     }
     let isUser;
-    if (username===data.details.Username) isUser = true;
+    if (username.toLowerCase()===data.details.Username.toLowerCase()) isUser = true;
     else isUser = false;
 
-return <div className="container pt-2" >
+return <div className="container pt-2 profile-main" >
 <div className="row">
     <div className="col-md-5 mb-3">
     <ProfileCard details={data.details} isUser={isUser} />

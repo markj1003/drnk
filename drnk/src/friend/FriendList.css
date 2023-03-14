@@ -9,11 +9,11 @@
 .friendPP {
     border-style: solid;
     border-radius: 50%;
-    max-width: 100%;
+    max-width: 60%;
 }
 
 .friend-option {
-    max-width: 100%;
+    max-width: 50%;
     filter: invert(26%) sepia(0%) saturate(1%) hue-rotate(237deg) brightness(97%) contrast(95%);
 }
 
@@ -23,15 +23,21 @@
 }
 
 .text-tab {
-    color: #444444;
-    font-size: x-large;
+    font-size: large;
+}
+@media(min-width: 768px) {
+    .text-tab {
+        font-size: x-large;
+    }
+    .friendPP {
+        max-width: 90%;
+    }
 }
 
 hr {
     color: #444444;
     margin-left: -5px;
     border-top: 3px solid;
-    width: 105%;
 }
 
 .col-username {
@@ -65,3 +71,8 @@ hr {
     outline: none;
 }
 
+@media(max-width: 768px) {
+    .btn-search {
+        width: 100%;
+    }
+}

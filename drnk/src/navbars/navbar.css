@@ -1,3 +1,7 @@
+:root {
+    --dark: #252422;
+}
+
 .user-tab {
     height: 2em;
 }
@@ -11,7 +15,13 @@
 }
 
 .oc-tab {
-    max-width: 25%;
+    max-width: 50%;
+}
+
+@media(min-width: 768px) {
+    .oc-tab {
+        max-width: 30%;
+    }
 }
 
 .fb-search {
@@ -23,4 +33,25 @@
 .fixed-bottom {
     padding-left: 1%;
     padding-right: 1%
+}
+
+.only-drinks {
+    font-size: x-large;
+}
+
+.bottom-bar {
+    background-color: var(--dark);
+}
+
+.no-overflow {
+    overflow: hidden;
+}
+
+.msg-open {
+    border: solid 2px var(--dark);
+}
+
+.msg-container {
+    height: 400px;
+    width: 300px;
 }

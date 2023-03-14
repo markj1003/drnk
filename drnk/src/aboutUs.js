@@ -16,7 +16,7 @@ function People(props) {
     return (<div className='row'>
                 {props.people.map((person)=>(
                     <div className="col-lg-4 text-center" key={person.name}>
-                        <Image src={person.picture} className='profile' fluid thumbnail roundedCircle />
+                        <Image src={person.picture} className='profile-about' fluid thumbnail roundedCircle />
                         <h2 className="fw-normal text-primary">{person.name}</h2>
                         <strong>{person.title}</strong>
                         <p>{person.description}</p>
@@ -73,7 +73,7 @@ export default function AboutUs() {
                     <Beer size='about'/>
                     <p>Driven by a shared passion for the drink we strive to create a boozier internet, one game at a time.</p>
                     <div className='d-flex justify-content-center'>
-                        <Button onClick={() => navigate('/auth/signUp')}>Get involved</Button>
+                        <Button size='lg' onClick={() => navigate('/auth/signUp')}>Get involved</Button>
                     </div>
                 </div>
             </div>

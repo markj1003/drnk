@@ -60,14 +60,14 @@ export function new_account(username, password) {
 }
 
 export function getAccount(username) {
-    if (username === 'kwang') {
+    if (username.toLowerCase() === 'kwang') {
         return {
             found: true,
             details: {
                 Name: 'Kwang Ming Cha',
                 Title: 'King of the whisk',
                 Description: "If there's whisky and there's a couch to pass out on, I'll be there.",
-                Username: 'kwang',
+                Username: 'Kwang',
                 Email: 'kwang@mingmail.cha',
                 Beverage: 'The grouse'
             },
@@ -112,6 +112,67 @@ export function getAccount(username) {
                 prog: 8,
                 target: 10,
                 level: 3
+            }]
+
+        }
+    }
+    if (username.toLowerCase() === 'liam') {
+        return {
+            found: true,
+            details: {
+                Name: 'Liam Lang',
+                Title: 'Climb, drink, repeat',
+                Description: "Surely you would.",
+                Username: 'Liam',
+                Email: 'liam@lang.mail',
+                Beverage: 'My next one'
+            },
+            rooms: 
+                [{
+                    name: 'onlyDrinks devs',
+                    desc: 'The developers having a few',
+                    pic: RoomPic
+                },
+                {
+                    name: 'Dublin Delegation',
+                    desc: 'This way for alcohol poisoning',
+                    pic: RoomPic
+                },
+                {
+                    name: 'Climbers',
+                    desc: 'A whisky surely?',
+                    pic: RoomPic
+                },
+                {
+                    name: 'Galway drinkers',
+                    desc: 'Swedes beware',
+                    pic: RoomPic
+                }
+            
+                ],
+            awards:  [{
+                title: 'Beverages consumed',
+                prog: 450,
+                target: 500,
+                level: 6
+            },
+            {
+                title: 'Room trophies',
+                prog: 11,
+                target: 20,
+                level: 4
+            },
+            {
+                title: 'Games won',
+                prog: 25,
+                target: 50,
+                level: 5
+            },
+            {
+                title: 'Challenges wom',
+                prog: 12,
+                target: 15,
+                level: 4
             }]
 
         }

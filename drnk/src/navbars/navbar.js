@@ -17,7 +17,7 @@ function SiteNavBar() {
         navigate("/");
     }
     return (
-        <NavBar className="bg-dark" >
+        <NavBar fixed='top' className="bg-dark" >
             <Container fluid className='px-3'>
                     <OnlyDrinksLogo onClick={onClick} />
                 <NavBar.Collapse className="justify-content-end">
@@ -35,7 +35,7 @@ function OnlyDrinksLogo(props) {
         name="welcome" className="text-primary clickable d-flex justify-content-center">
             <Beer size='logo' /> 
             <div className='pt-1'>
-                <span >onlyDrinks</span>
+                <span className='only-drinks'>onlyDrinks</span>
             </div>
             </NavBar.Brand>
     )

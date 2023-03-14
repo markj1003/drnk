@@ -79,7 +79,7 @@ export function Rooms(props) {
     }
     return <React.Fragment>
         <Warning header={header} body={body} show={removeWarning} close={toggleRemove} yes={confirmRemove} />
-        <Card>
+        <Card className="pb-5">
         <Card.Header>Rooms</Card.Header>
         <Card.Body>
             <Row className="gy-2">
@@ -105,10 +105,10 @@ export function ProfileCard(props) {
                 <p className="text-muted font-size-sm">{props.details.Title}</p>
                 </div>
                 {!props.isUser && <Row className="gx-2 w-100 d-flex justify-content-center">
-                    <Col md='auto'>
+                    <Col xs='auto'>
                         <Button className="px-2">Add friend</Button>
                     </Col>
-                    <Col md='auto'>
+                    <Col xs='auto'>
                         <Button className="gx-2">Message</Button>
                     </Col>
                     </Row>}
@@ -192,7 +192,7 @@ export function StatsCard(props) {
         <div className="card">
             <div className="card-title text-center pt-2">
                 <h6>
-                    <i className="material-icons text-info">Awards overview</i>
+                    <i className="text-info">Awards overview</i>
                 </h6>
             </div>
             {props.awards.map((award) =>
