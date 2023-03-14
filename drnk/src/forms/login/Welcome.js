@@ -3,7 +3,8 @@ import Beer from "../../assets/beerSVG"
 import Container from "react-bootstrap/Container";
 import React from "react";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import './Welcome.css'
 
 
 function WelcomeInfo() {
@@ -25,6 +26,7 @@ function LoginButtons() {
             <Stack direction="horizontal" gap={3}>
                 <Button size='lg' name='login' onClick={() => navigate('/auth/login')}>Log in</Button>
                 <Button size='lg' name='signup' onClick={() => navigate('/auth/signup')}>Sign up</Button>
+                <Button size='lg' name='about' onClick={() => navigate('/aboutUs')}>About us</Button>
             </Stack>
         </Container>
     );

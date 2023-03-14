@@ -1,0 +1,57 @@
+:root {
+    --dark: #252422;
+}
+
+.user-tab {
+    height: 2em;
+}
+
+.user-img {
+    max-height: 100%;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.oc-tab {
+    max-width: 50%;
+}
+
+@media(min-width: 768px) {
+    .oc-tab {
+        max-width: 30%;
+    }
+}
+
+.fb-search {
+    width: 400px;
+    margin-left: 0;
+    max-width: 23%;
+}
+
+.fixed-bottom {
+    padding-left: 1%;
+    padding-right: 1%
+}
+
+.only-drinks {
+    font-size: x-large;
+}
+
+.bottom-bar {
+    background-color: var(--dark);
+}
+
+.no-overflow {
+    overflow: hidden;
+}
+
+.msg-open {
+    border: solid 2px var(--dark);
+}
+
+.msg-container {
+    height: 400px;
+    width: 300px;
+}

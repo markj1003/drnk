@@ -1,22 +1,78 @@
-
 .friendItem {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 3%;
-    padding-left: 3%;
+    padding: none
 }
 
 .friendPP {
-    border: 2px solid powderblue;
+    border-style: solid;
     border-radius: 50%;
-    height: 7%;
-    width: 7%;
+    max-width: 60%;
 }
 
-.friendOnlineStatus {
-    border-radius: 50%;
-    height: 2%;
-    width: 2%
+.friend-option {
+    max-width: 50%;
+    filter: invert(26%) sepia(0%) saturate(1%) hue-rotate(237deg) brightness(97%) contrast(95%);
+}
+
+.border-all {
+    border-style: solid;
+    border-radius: 2px;
+}
+
+.text-tab {
+    font-size: large;
+}
+@media(min-width: 768px) {
+    .text-tab {
+        font-size: x-large;
+    }
+    .friendPP {
+        max-width: 90%;
+    }
+}
+
+hr {
+    color: #444444;
+    margin-left: -5px;
+    border-top: 3px solid;
+}
+
+.col-username {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.debug {
+    background-color: red;
+}
+
+.option {
+    background-color: #faf3e8;
+    border: none;
+}
+
+.option:hover {
+    background-color: #faf3e8;
+}
+
+.option:focus {
+    border-style: none;
+    background-color: #faf3e8;
+    outline: none;
+}
+
+.show.btn-primary.option {
+    background-color: #faf3e8;
+    outline: none;
+}
+
+@media(max-width: 768px) {
+    .btn-search {
+        width: 100%;
+    }
 }

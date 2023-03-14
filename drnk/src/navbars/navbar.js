@@ -2,15 +2,13 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import NavBar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image';
-import UserPic from './assets/default_profile.svg';
+import UserPic from '../assets/default_profile.svg';
 import './navbar.css';
 import {useSelector} from "react-redux";
 import {Outlet, useNavigate} from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
-import {OnlineStatus} from "./friend/FriendItem";
-import {toggleAppearOffline} from "./storeSlices/onlineStatusesSlice";
-import store from "./store";
-import {setLoggedOut} from "./storeSlices/loginSlice";
+import Beer from '../assets/beerLogo';
+import { logout } from '../interface';
 
 function SiteNavBar() {
     const loggedIn = useSelector((state) => state.login.loggedIn);
@@ -19,47 +17,49 @@ function SiteNavBar() {
         navigate("/");
     }
     return (
-        <NavBar className="bg-dark" >
+        <NavBar fixed='top' className="bg-dark" >
             <Container fluid className='px-3'>
-                <NavBar.Brand onClick={onClick}
-                              name="welcome" className="text-primary clickable">onlyDrinks</NavBar.Brand>
+                    <OnlyDrinksLogo onClick={onClick} />
                 <NavBar.Collapse className="justify-content-end">
-                    <UserInfoNavBar loggedIn={loggedIn} />
+                    <UserInfoNavBar onClick={onClick} loggedIn={loggedIn} />
                 </NavBar.Collapse>
             </Container>
         </NavBar>
     );
 }
- {/*<div 
-        className='user-tab d-flex justify-content-between align-items-center clickable'> */}
-            
+ 
+//todo: this doesn't scale to different viewport sizes
+function OnlyDrinksLogo(props) {
+    return (
+    <NavBar.Brand onClick={props.onClick}
+        name="welcome" className="text-primary clickable d-flex justify-content-center">
+            <Beer size='logo' /> 
+            <div className='pt-1'>
+                <span className='only-drinks'>onlyDrinks</span>
+            </div>
+            </NavBar.Brand>
+    )
+} 
 
 function UserInfoNavBar(props) {
-    const appearOffline = useSelector((state) => state.onlineStatuses.appearOffline)
-    const logOut = () => {
-        store.dispatch(setLoggedOut());
-        if (appearOffline) {
-            store.dispatch(toggleAppearOffline());
-        }
-    }
+    const navigate = useNavigate();
+    
     if (props.loggedIn) {
         return (
            <Dropdown drop='start'>
                 <Dropdown.Toggle className="pr-2 user-tab d-flex justify-content-between align-items-center">
                     <Image src={UserPic} className='pr-2 user-img' />
-                    <OnlineStatus online={props.loggedIn && !appearOffline} />
                         Kwang
-
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                    <Dropdown.Item>View profile</Dropdown.Item>
-                    <Dropdown.Item onClick={() => store.dispatch(toggleAppearOffline())}>Appear {appearOffline ? "Online" : "Offline"} </Dropdown.Item>
-                    <Dropdown.Item onClick={logOut}>Log out</Dropdown.Item>
+                    <Dropdown.Item onClick={() => navigate('/profile')}>View profile</Dropdown.Item>
+                    <Dropdown.Item onClick={() => navigate('/aboutUs')}>About onlyDrinks</Dropdown.Item>
+                    <Dropdown.Item onClick={() => logout()}>Log out</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>)
     }
     else {
-        return <NavBar.Text className='text-primary clickable'>Log in or sign up!</NavBar.Text>
+        return <NavBar.Text onClick={props.onClick} className='text-primary clickable'>Log in or sign up!</NavBar.Text>
     }
 }
 

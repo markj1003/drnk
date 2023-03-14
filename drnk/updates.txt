@@ -5,3 +5,14 @@ commit bottom-buttons:
 -functionality added for log in, sign up, reset pages (all now attempt to submit, user is 
     prompted if their submission doesn't result in successful log in)
 -when logged in, user icon in top navbar is now interactive
+
+commit added SVG logo:
+-look at the homepage! 
+
+commit lots:
+-profile pages
+-functional friends page 
+-example feed
+-cookies to remember log in
+-log out option
+-... probably more 
