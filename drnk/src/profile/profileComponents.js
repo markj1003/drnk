@@ -8,6 +8,9 @@ import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import Modal from 'react-bootstrap/Modal';
 import DetailsForm from './DetailsForm';
+import FriendList from "../friend/FriendList";
+import Container from 'react-bootstrap/Container';
+import './profile.css';
 
 export function RoomCard(props) {
     const navigate = useNavigate();
@@ -201,4 +204,20 @@ export function StatsCard(props) {
             )}
             
         </div>)
+}
+
+//todo: decide on a reasonable max height for this
+export function FriendsCard(props) {
+    const navigate = useNavigate();
+    const onClick = (username) => {
+        navigate('/u/' + username)
+    }
+    return <Card className="card-friends" >
+        <Card.Header className="d-flex justify-content-center">
+            <h6><i className="text-info">Friends</i></h6>
+        </Card.Header>
+        <Container className="overflow-auto">
+        <FriendList small onClick={onClick} />
+        </Container>
+        </Card>
 }

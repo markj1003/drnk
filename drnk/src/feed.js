@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -11,6 +11,7 @@ import SampleFeedLang from './assets/sampleFeedPic.jpg';
 import SampleFeedEnner from './assets/sampleFeedEnner.jpg';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import UserClick from "./sharedComponents/userClick";
 import './feed.css';
 
 function getFeed() {
@@ -31,13 +32,21 @@ function getFeed() {
 }
 
 function FeedItem(props) {
-    return <Card className='card-feed'>
+    const [anchor, setAnchor] = useState(null);
+    const handleClick = (ev) => {
+        setAnchor(ev.target)
+    }
+    const handleClose = () => {
+        setAnchor(null);
+    }
+    return <React.Fragment>
+        <Card className='card-feed'>
         <Card.Header>
             <Row>
-                <Col sm='auto' className="pr-0">
+                <Col sm='auto' className="pr-0 clickable" onClick={handleClick}>
                     <Image src={props.details.profile} fluid thumbnail roundedCircle className="profile" />
                 </Col>
-                <Col className="text-align-left d-flex justify-content-center flex-column">
+                <Col className="text-align-left d-flex justify-content-center flex-column clickable" onClick={handleClick}>
                     <span className="name">{props.details.name}</span>
                 </Col>
                 <Col xs={{order: 12, span: 'auto'}} className="d-flex justify-content-center flex-column">
@@ -64,6 +73,8 @@ function FeedItem(props) {
             </Stack>
         </Card.Body>
     </Card>
+    <UserClick anchor={anchor} onClose={handleClose} username={props.details.name} onClick={(user)=>console.log('todo '+user)} />
+    </React.Fragment>
 }
 
 export default function Feed() {

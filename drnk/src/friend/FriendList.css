@@ -30,7 +30,7 @@
         font-size: x-large;
     }
     .friendPP {
-        max-width: 90%;
+        max-width: 40px;
     }
 }
 
@@ -75,4 +75,12 @@ hr {
     .btn-search {
         width: 100%;
     }
+}
+
+.friend-small {
+    max-height: 40px;
+}
+
+.col-friend {
+    max-height: 40px;
 }

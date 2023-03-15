@@ -10,23 +10,24 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Divider from '@mui/material/Divider';
+import UserOptions from "../sharedComponents/userOptions";
+import UserClick from "../sharedComponents/userClick";
+import './FriendList.css';
 
 export default function FriendItem(props) {
     const color = props.status ? 'success' : 'danger';
     const [anchor, setAnchor] = useState(null);
-    const [show, setShow] = useState(false);
     const handleClick = (ev) => {
         setAnchor(ev.target)
     }
     const handleClose = () => {
         setAnchor(null);
     }
-    const open = Boolean(anchor);
-
+    const small = props.small ? ' friend-small' : '';
     return <React.Fragment>
         <Divider className="bg-dark" />
-        <Row className="align-items-center mt-1 mb-1">
-            <Col xs='4' lg='3'>
+        <Row className={"h-100 align-items-center mt-1 mb-1"+small}>
+            <Col xs='4' lg='3' className="col-friend">
                 <img className={"mr-5 friendPP border-"+color} src={props.pic ? props.pic : DefaultPic}/>
             </Col>
             <Col xs='4' lg='6' className="d-flex justify-content-center " onClick={handleClick}>
@@ -35,28 +36,10 @@ export default function FriendItem(props) {
                 </div>
             </Col>
             <Col xs='4' lg='3' className="d-flex justify-content-center">
-                <Dropdown >
-                    <Dropdown.Toggle  >
-                    <SettingsIcon />
-                    </Dropdown.Toggle>
-                <Dropdown.Menu popperConfig={{placement: 'left'}} role="menu" className="top">
-                        <Dropdown.Item onClick={() => props.onClick(props.username)}>View user profile</Dropdown.Item>
-                        <Dropdown.Item>Remove friend</Dropdown.Item>
-                </Dropdown.Menu>
-                </Dropdown>
+                <UserOptions onClick={props.onClick} username={props.username} />
             </Col>
         </Row>
-        <Popover
-            open={open}
-            anchorEl={anchor}
-            onClose={handleClose}
-            anchorOrigin={{vertical: 'bottom'}}
-            >
-                <ButtonGroup variant='solid' orientation="vertical">
-                    <Button>Send message</Button>
-                    <Button>Challenge!</Button>
-                </ButtonGroup>
-            </Popover>
+        <UserClick anchor={anchor} onClose={handleClose} username={props.username} onClick={(user)=>console.log('todo '+user)} />
     </React.Fragment>
 
 }

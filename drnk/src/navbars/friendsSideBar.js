@@ -10,12 +10,15 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import './navbar.css';
+import InputButton from '../sharedComponents/inputButton';
 
 export default function FriendSideBar(props) {
-    const [search, changeSearch] = useState('');
-    const onSubmit = (ev) => {
-        ev.preventDefault();
-        console.log(search);
+    const [filter, setFilter] = useState('');
+    const onChange = (text) => {
+        setFilter(text.toLowerCase());
+    }
+    if (!props.show && filter) {
+        setFilter('');
     }
     return (
         <>
@@ -23,23 +26,10 @@ export default function FriendSideBar(props) {
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title> Friends </Offcanvas.Title>
                 </Offcanvas.Header>
-                <Offcanvas.Body className='no-overflow'>
-                    <FriendList onClick={props.onClick} />
-                    <div className='bottom-bar'>
-                <Form onSubmit={onSubmit} className="ml-0 mr-0 mb-2 d-flex row justify-content-center">
-                    <Col xs='10' md="7" className='p-0 justify-content-center'>
-                        <Form.Control
-                        type="search"
-                        placeholder="Search for users"
-                        className="mt-2"
-                        value={search} 
-                        onChange={(ev) => changeSearch(ev.target.value)}
-                        />
-                    </Col>
-                    <Col xs='10' md="4" className='d-flex justify-content-center'>
-                        <Button type='submit' variant="primary mt-2 btn-search">Search</Button>
-                    </Col>
-                    </Form>
+                <Offcanvas.Body className='overflow-auto mb-5'>
+                    <FriendList filter={filter} onClick={props.onClick} />
+                    <div className='bottom-search-bar py-2 bg-dark'>
+                <InputButton keep placeholder='Search friends' button='Search' onChange={onChange} />
                 </div>
                 </Offcanvas.Body>
             </Offcanvas>

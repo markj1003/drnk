@@ -1,3 +1,8 @@
 .profile-main {
     margin-top: 75px;
 }
+
+.card-friends {
+    max-height: 500px;
+    margin-bottom: 75px;
+}

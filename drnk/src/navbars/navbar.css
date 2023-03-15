@@ -49,9 +49,19 @@
 
 .msg-open {
     border: solid 2px var(--dark);
+    border-radius: 15px !important;
 }
+
 
 .msg-container {
     height: 400px;
     width: 300px;
+}
+
+.bottom-search-bar {
+    position: absolute;
+    left: 0%;
+    bottom: 0%;
+    width: 100%;
+    height: 56px;
 }

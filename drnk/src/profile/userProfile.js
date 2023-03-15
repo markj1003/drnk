@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
-import { ProfileCard, StatsCard, DetailsCard, Rooms } from './profileComponents';
+import { ProfileCard, StatsCard, DetailsCard, Rooms, FriendsCard } from './profileComponents';
 import './profile.css';
 import RoomPic from '../assets/defaultRoomPic.svg';
 
@@ -101,6 +101,7 @@ export default function Profile() {
                 <div className="col-md-5 mb-3">
                 <ProfileCard details={details} isUser='true' />
                 <StatsCard awards={awards} />
+                <FriendsCard />
                 </div>
                 <div className="col-md-7">
                 <DetailsCard details={details} isUser='true' onChange={onChange} />
