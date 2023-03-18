@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import NavBar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
-import { Avatar, Divider } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './navbar.css';
@@ -10,13 +9,7 @@ import FriendSideBar from './friendsSideBar';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Popper, Card, CardHeader, CardContent } from '@mui/material';
-import Lang from '../assets/aboutPhotos/lang.jpg';
-import Ruaridh from '../assets/aboutPhotos/ruaridh.jpg';
-import Joyal from '../assets/aboutPhotos/joyal.jpg';
-import Default from '../assets/default_profile.svg';
 import PopupItems from './messaging';
-import SD from './speedDial';
 
 export default function SelectNavBar () {
     const navigate = useNavigate();
@@ -49,7 +42,7 @@ export default function SelectNavBar () {
             <FriendSideBar onClick={onClick} show={showFriends} onHide={handleCloseFriends} />
             <RoomsSideBar show={showRooms} onHide={handleCloseRooms} />
         </div>
-        <SD />
+        
     </React.Fragment>
 }
 

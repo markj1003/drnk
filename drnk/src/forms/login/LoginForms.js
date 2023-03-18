@@ -5,8 +5,8 @@ import Toast from "react-bootstrap/Toast";
 import GenericForm from "../Form";
 import Card from "react-bootstrap/Card";
 import {Link, useNavigate} from "react-router-dom";
-import {log_in, new_account, reset} from "../../interface";
-import store from "../../store";
+import {log_in, new_account, reset} from "../../serverInterface/interface";
+import store from "../../storeSlices/store";
 import {setLoggedIn} from "../../storeSlices/loginSlice";
 import './LoginForm.css'
 
@@ -29,10 +29,10 @@ function LoginForm() {
     const onSubmit = async (ev, userInput) => {
         let token = await log_in(userInput["Username"], userInput["Password"]);
         if (token) {
+            store.dispatch(setLoggedIn(token))
             navigate('/');
         }
         else {
-            console.log('here')
             setShowToast(!showToast);
         }
     }

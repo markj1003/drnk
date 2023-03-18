@@ -1,14 +1,14 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import Beer from './assets/beerLogo';
+import Beer from '../assets/beerLogo';
 import Image from 'react-bootstrap/Image';
 import { useNavigate } from 'react-router-dom';
-import Ruaridh from './assets/aboutPhotos/ruaridh.jpg';
-import Enner from './assets/aboutPhotos/enner.jpg';
-import Mark from './assets/aboutPhotos/mark.jpg';
-import Lang from './assets/aboutPhotos/lang.jpg';
-import Ella from './assets/aboutPhotos/ella.jpg';
-import Joyal from './assets/aboutPhotos/joyal.jpg';
+import Ruaridh from '../assets/aboutPhotos/ruaridh.jpg';
+import Enner from '../assets/aboutPhotos/enner.jpg';
+import Mark from '../assets/aboutPhotos/mark.jpg';
+import Lang from '../assets/aboutPhotos/lang.jpg';
+import Ella from '../assets/aboutPhotos/ella.jpg';
+import Joyal from '../assets/aboutPhotos/joyal.jpg';
 import './aboutUs.css';
 
 

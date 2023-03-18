@@ -4,32 +4,13 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
-import ProfilePicLang from './assets/aboutPhotos/lang.jpg';
-import ProfilePicEnnis from './assets/aboutPhotos/enner.jpg';
 import Stack from "react-bootstrap/Stack";
-import SampleFeedLang from './assets/sampleFeedPic.jpg';
-import SampleFeedEnner from './assets/sampleFeedEnner.jpg';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import UserClick from "./sharedComponents/userClick";
+import UserClick from "../sharedComponents/userClick";
+import getFeed from '../serverInterface/feedInterface';
+import { connect } from "react-redux";
 import './feed.css';
-
-function getFeed() {
-    return [{
-        name: 'Liam Lang',
-        time: '2 hours',
-        caption: 'God I love a love a tasty pint',
-        image: SampleFeedLang,
-        profile: ProfilePicLang
-    },
-    {
-        name: 'William Ennis',
-        time: '4 hours',
-        caption: "Pimping ain’t easy but somebody’s gotta do it",
-        image: SampleFeedEnner,
-        profile: ProfilePicEnnis
-    }]
-}
 
 function FeedItem(props) {
     const [anchor, setAnchor] = useState(null);
@@ -73,24 +54,38 @@ function FeedItem(props) {
             </Stack>
         </Card.Body>
     </Card>
-    <UserClick anchor={anchor} onClose={handleClose} username={props.details.name} onClick={(user)=>console.log('todo '+user)} />
+    <UserClick profile anchor={anchor} onClose={handleClose} username={props.details.name} onClick={(user)=>console.log('todo '+user)} />
     </React.Fragment>
 }
 
-export default function Feed() {
-    const feedItems = getFeed();
+function mapStateToProps(state) {
+    return {feed: state.feed};
+}
+
+function Feed(props) {
+    //const [feedItems, newFeed] = useState(getFeed());
+    const [c, cc] = useState(0);
+    const moreFeed = () => {
+        getFeed(require=c);
+        cc(c+1);
+    }
+    console.log('bigming', props.feed.length)
+    const d = new Date();
     return <Container className="feed">
         <Row>
             <Col lg='2'>
             </Col>
             <Col lg='8'>
                 <Stack gap='3'>
-                {feedItems.map((item) => <FeedItem details={item} key={item.caption} />)}
+                {props.feed.map((item) => <FeedItem details={item} key={d.getMilliseconds()+item.name+c} dn={c} />)}
                 </Stack>
             </Col>
             <Col lg='2'>
 
             </Col>
         </Row>
+        <Button onClick={moreFeed}>Load more</Button>
     </Container>
 }
+
+export default connect(mapStateToProps)(Feed);

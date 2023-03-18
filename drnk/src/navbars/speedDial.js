@@ -11,6 +11,8 @@ import Message from '@mui/icons-material/Message';
 import './speedDial.css';
 import {useState, useEffect} from 'react';
 import useIntervalHook from '../hooks/useIntervalHook';
+import store from '../storeSlices/store';
+import { connect } from 'react-redux';
 
 const actions = [
   { icon: <AddAPhoto />, name: 'New post' },
@@ -20,7 +22,11 @@ const actions = [
   { icon: <Message />, name: 'Send a message' }
 ];
 
-export default function ActionSpeedDial() {
+function mapStateToProps(state) {
+    return {loginState: state.login }
+}
+
+function ActionSpeedDial(props) {
     //we want to hide the speed dial while an offcanvas is visible
     //but checking if an offcanvas is visible too frequently is a big
     //resource drain. we can't use a click listener directly because the 
@@ -53,7 +59,7 @@ export default function ActionSpeedDial() {
         document.addEventListener('click', changeInterval);
         return () => document.removeEventListener('click', changeInterval);
     })
-    const visibility = isHidden ? 'invisible ' : ''
+    const visibility = (isHidden || !props.loginState.loggedIn) ? 'invisible ' : ''
     return (
         <Box>
         <SpeedDial
@@ -75,3 +81,5 @@ export default function ActionSpeedDial() {
         </Box>
     );
 }
+
+export default connect(mapStateToProps)(ActionSpeedDial);

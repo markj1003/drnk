@@ -9,7 +9,7 @@ import './Welcome.css'
 
 function WelcomeInfo() {
     return (
-        <Container className="text-dark container-fluid text-center p-0">
+        <Container className="text-dark container-fluid text-center p-0 mt-5">
             <Stack className="p-0 d-flex justify-content-center">
                 <h1 className="text-primary main-header">onlyDrinks</h1>
                 <Beer />

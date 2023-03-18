@@ -1,10 +1,10 @@
 import './App.css';
 import React from 'react';
 import { Provider } from 'react-redux';
-import store from './store';
-import { setLoggedIn } from './storeSlices/loginSlice';
+import store from '../storeSlices/store';
+import { setLoggedIn } from '../storeSlices/loginSlice';
 import {RouterProvider} from "react-router-dom";
-import {router} from "./routes/routes";
+import {router} from "../routes/routes";
 import Cookies from 'universal-cookie';
 
 function App() {

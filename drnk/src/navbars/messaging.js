@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Button from 'react-bootstrap/Button';
 import { Avatar, Divider } from '@mui/material';
 import './navbar.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 import { Popper, Card, CardHeader, CardContent } from '@mui/material';
 import Lang from '../assets/aboutPhotos/lang.jpg';
 import Ruaridh from '../assets/aboutPhotos/ruaridh.jpg';
@@ -13,26 +12,15 @@ import Joyal from '../assets/aboutPhotos/joyal.jpg';
 import Default from '../assets/default_profile.svg';
 import InputButton from '../sharedComponents/inputButton';
 import UserClick from '../sharedComponents/userClick';
+import store from '../storeSlices/store';
+import { removeMessager } from '../storeSlices/activeMessages';
+import {connect, useSelector} from 'react-redux';
+import getFriend from '../serverInterface/detailsInterface';
 
 const profilePics = {
     'Liam': Lang,
     'Ruaridh': Ruaridh,
     'Joyal': Joyal
-}
-
-function getActiveItems() {
-    return [{
-        username: 'Liam',
-        pic: Lang
-    },
-    {
-        username: 'Ruaridh',
-        pic: Ruaridh
-    },
-    {
-        username: 'Joyal',
-        pic: Joyal
-    }];
 }
 
 var messages = [{sender: 0, message:'a few beers?', time:'16:58'}, {sender: 1, message:'surely', time:'17:00'}];
@@ -51,7 +39,7 @@ function addMessage(m) {
 function getMe() {
     return {
         username: 'Kwang',
-        profile: Default
+        pic: Lang
     }
 }
 
@@ -59,20 +47,9 @@ export default function PopupItems() {
     const [active, setActive] = useState(false);
     const [anchor, setAnchor] = useState(null);
     const [activeUser, setActiveUser] = useState('');
-    useEffect(() => {
-        if (anchor) {
-          //document.addEventListener("mousedown", handleClick)
-        } else {
-          //document.removeEventListener("mousedown", handleClick)
-        }
-       // Specify how to clean up after this effect:
-       return function cleanup() {
-          //document.removeEventListener("mousedown", handleClick)
-       }
-    }, [anchor])
-    
-    const handleXClick = (ev) => {
-        console.log('x')
+
+    const handleXClick = (ev, username) => {
+        store.dispatch(removeMessager(username));
         const el = document.getElementById('messagePopper');
         if (ev.target.parentElement.getAttribute('name') === 'messHead') {
         }
@@ -82,8 +59,7 @@ export default function PopupItems() {
         }
     }
     const handleClick = (ev, username) => {
-        console.log('he')
-        if (active && ev.target === anchor) {
+        if (active && username === activeUser) {
             setActive(false);
             setAnchor(null);
         }
@@ -93,35 +69,73 @@ export default function PopupItems() {
             setActiveUser(username);
         }
     }
+
+    const initial = (ev, username) => {
+            setActive(true);
+            setAnchor(ev.target.children[0]);
+            setActiveUser(username);
+    }
+
     const open = Boolean(active);
-    const bubbles = getActiveItems();
+    const colour = open ? 'active' : 'inactive';
     return (<React.Fragment>
-        <Popper
-            id='messagePopper'
-            open={open}
-            anchorEl={anchor}
-            placement="top-start"
-            disablePortal={false}
-        >   
-            <MessageBox username={activeUser} onClick={handleXClick} />
-        </Popper>
-            <ActiveBubbles bubbles={bubbles} onClick={handleClick} />
+            <MessagePopper anchor={anchor} open={open} user={activeUser}
+                onClick={handleXClick} />
+            <ActiveBubbles initial={initial} onClick={handleClick} />
             </React.Fragment>)
 }
 
-function ActiveBubbles(props) {
+function MessagePopper(props) {
+    return <Popper
+        id='messagePopper'
+        data-for='messagePopper'
+        open={props.open}
+        anchorEl={props.anchor}
+        placement="top-start"
+        disablePortal={false}
+    >   
+        <MessageBox username={props.user} onClick={props.onClick} />
+    </Popper>
+}
+
+function mapStateToProps(state) {
+    const names = state.activeMessages;
+    return {names: names};
+}
+const ActiveBubbles = connect(mapStateToProps)((props) => {
+    const giveRef = (username, ref) => {
+        props.initial({target: ref.current}, username);
+    }
     return <div className='d-flex'>
-        {(props.bubbles).map((item) => 
-            <Avatar name='messHead' key={item.username} src={item.pic} onClick={(ev)=>props.onClick(ev, item.username)}
-            className='mx-1 clickable' style={{border: '2px solid #faf3e8'}}></Avatar>)
+        {(props.names).map((item) => 
+            <Bubble key={item} username={item} giveRef={giveRef} onClick={props.onClick} />)
         }
     </div>
+})
+
+function Bubble(props) {
+    const bubbleRef = useRef(null);
+    const details = getFriend(props.username);
+
+    useEffect(() => {
+        props.giveRef(details.username, bubbleRef);
+    }, []);
+
+    const onClick = (ev) => {
+        props.onClick(ev, details.username)
+    }
+    return <div>
+        <Avatar 
+            ref={bubbleRef} name='messHead' key={details.username} 
+            src={details.pic} onClick={onClick}
+            className='mx-1 clickable' style={{border: '2px solid #faf3e8'}} />
+        </div>
 }
+
 function MessageBox(props) {
     const [dummy, update] = useState('');
-    const data = getMessages(props.username)
+    const data = getFriend(props.username);
     const onSubmit = (text, time) => {
-        console.log(data);
         addMessage({sender: 1,
             message: text,
             time: time});
@@ -149,8 +163,8 @@ function MessageFeed(props) {
         {props.data.messages.map((message)=> 
         <Row className='mt-2' key={message.message}>
             <Col sm={{span: 8, offset: 4*message.sender}}>
-                {message.sender ? <Message username={me.username} pic={me.profilePic} message={message} />
-                : <Message username={props.data.username} pic={props.data.profilePic} message={message} />}
+                {message.sender ? <Message username={me.username} pic={me.pic} message={message} />
+                : <Message username={props.data.username} pic={props.data.pic} message={message} />}
                 
             </Col>
         </Row>)}
@@ -174,9 +188,9 @@ function FeedHeader(props) {
                     {props.data.username}
                 </span>
             </div>
-            <Button onClick={props.onClick}>X</Button>
+            <Button onClick={(ev)=>props.onClick(ev, props.data.username)}>X</Button>
             </div>} 
-        avatar={<Avatar src={props.data.profilePic}/>} />
+        avatar={<Avatar src={props.data.pic}/>} />
         <UserClick profile nomsg anchor={anchor} username={props.data.username} onClose={onClose} />
         </React.Fragment>
 }

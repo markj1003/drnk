@@ -8,7 +8,7 @@ import {useSelector} from "react-redux";
 import {Outlet, useNavigate} from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import Beer from '../assets/beerLogo';
-import { logout } from '../interface';
+import { logout } from '../serverInterface/interface';
 
 function SiteNavBar() {
     const loggedIn = useSelector((state) => state.login.loggedIn);

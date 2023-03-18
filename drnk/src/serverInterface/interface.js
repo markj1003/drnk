@@ -1,7 +1,7 @@
-import RoomPic from './assets/defaultRoomPic.svg';
+import RoomPic from '../assets/defaultRoomPic.svg';
 import Cookies from 'universal-cookie';
-import store from './store';
-import { setLoggedIn } from './storeSlices/loginSlice';
+import store from '../storeSlices/store';
+import { setLoggedIn } from '../storeSlices/loginSlice';
 const dummy = true;
 
 export async function log_in(username, password) {

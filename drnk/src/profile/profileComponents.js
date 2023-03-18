@@ -11,6 +11,8 @@ import DetailsForm from './DetailsForm';
 import FriendList from "../friend/FriendList";
 import Container from 'react-bootstrap/Container';
 import './profile.css';
+import { addMessager } from "../storeSlices/activeMessages";
+import store from "../storeSlices/store";
 
 export function RoomCard(props) {
     const navigate = useNavigate();
@@ -99,6 +101,10 @@ export function Rooms(props) {
 }
 
 export function ProfileCard(props) {
+    const message = () => {
+        console.log('hohoh')
+        store.dispatch(addMessager(props.details.Name));
+    }
     return (<div className="card">
         <div className="card-body">
             <div className="d-flex flex-column align-items-center text-center">
@@ -112,7 +118,7 @@ export function ProfileCard(props) {
                         <Button className="px-2">Add friend</Button>
                     </Col>
                     <Col xs='auto'>
-                        <Button className="gx-2">Message</Button>
+                        <Button className="gx-2" onClick={message}>Message</Button>
                     </Col>
                     </Row>}
             </div>
