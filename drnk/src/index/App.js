@@ -1,6 +1,5 @@
 import './App.css';
 import React from 'react';
-import { Provider } from 'react-redux';
 import store from '../storeSlices/store';
 import { setLoggedIn } from '../storeSlices/loginSlice';
 import {RouterProvider} from "react-router-dom";
@@ -15,9 +14,7 @@ function App() {
     Username: user.Username}));
   }
   return (
-    <Provider store={store}>
         <RouterProvider router={router} />
-    </Provider>
   );
 }
 

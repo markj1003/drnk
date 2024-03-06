@@ -14,24 +14,12 @@ import InputButton from '../sharedComponents/inputButton';
 import UserClick from '../sharedComponents/userClick';
 import store from '../storeSlices/store';
 import { removeMessager } from '../storeSlices/activeMessages';
-import {connect, useSelector} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import getFriend from '../serverInterface/detailsInterface';
-
-const profilePics = {
-    'Liam': Lang,
-    'Ruaridh': Ruaridh,
-    'Joyal': Joyal
-}
+import { getActiveMessages } from '../storeSlices/activeMessages';
 
 var messages = [{sender: 0, message:'a few beers?', time:'16:58'}, {sender: 1, message:'surely', time:'17:00'}];
-function getMessages(username) {
-    const profile = profilePics[username];
-    return {
-        username: username,
-        messages: messages,
-        profilePic: profile
-    }
-}
+
 function addMessage(m) {
     messages = [...messages, m];
 }
@@ -102,7 +90,11 @@ function mapStateToProps(state) {
     const names = state.activeMessages;
     return {names: names};
 }
-const ActiveBubbles = connect(mapStateToProps)((props) => {
+function ActiveBubblesUnlinked(props) {
+    const dispatch = useDispatch();
+    useEffect(()=> {
+        dispatch(getActiveMessages())
+    }, [])
     const giveRef = (username, ref) => {
         props.initial({target: ref.current}, username);
     }
@@ -111,7 +103,8 @@ const ActiveBubbles = connect(mapStateToProps)((props) => {
             <Bubble key={item} username={item} giveRef={giveRef} onClick={props.onClick} />)
         }
     </div>
-})
+}
+const ActiveBubbles = connect(mapStateToProps)(ActiveBubblesUnlinked);
 
 function Bubble(props) {
     const bubbleRef = useRef(null);

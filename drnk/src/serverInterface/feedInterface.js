@@ -1,5 +1,6 @@
 import { addToFeed } from "../storeSlices/feedSlice"
 import store from "../storeSlices/store"
+import { nanoid } from "@reduxjs/toolkit";
 import SampleFeedLang from '../assets/sampleFeedPic.jpg';
 import SampleFeedEnner from '../assets/sampleFeedEnner.jpg';
 import ProfilePicLang from '../assets/aboutPhotos/lang.jpg';
@@ -22,24 +23,23 @@ function getFiltered(filterRule=false) {
 }
 
 export default function getFeedData(require, filterRule=false) {
-    console.log('did it again')
     let feed = [{
-    //if (feed.length < require) {
             name: 'Liam Lang'+require,
             time: '2 hours',
             caption: 'God I love a love a tasty pint',
             image: SampleFeedLang,
-            profile: ProfilePicLang
+            profile: ProfilePicLang,
+            id: nanoid()
         },
         {
             name: 'William Ennis'+require,
             time: '4 hours',
             caption: "Pimping ain’t easy but somebody’s gotta do it",
             image: SampleFeedEnner,
-            profile: ProfilePicEnnis
+            profile: ProfilePicEnnis,
+            id: nanoid()
         }]
     store.dispatch(addToFeed(feed));
-    //}
     feed = feed.concat(getFiltered(filterRule));
     console.log(store.getState());
     return feed;
