@@ -2,22 +2,24 @@ import RoomPic from '../assets/defaultRoomPic.svg';
 import Cookies from 'universal-cookie';
 import store from '../storeSlices/store';
 import { setLoggedIn } from '../storeSlices/loginSlice';
-const dummy = true;
+import baseURL  from '../httpCommon/httpCommon';
+const dummy = false;
 
 export async function log_in(username, password) {
     console.log('Attempted log-in with: ' + username, password);
     if (!dummy) {
-        let res = await fetch("/", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-            } ,
-            body: JSON.stringify({username: username, 
-                password: password,
-                type: 'login'})
+        const res = await baseURL.post("/login", {
+            user: {
+                username,
+                password
+            },
+
         })
-        let worked = await res.json();
-        return worked.worked; 
+        .then(token => {
+            console.log(token)
+        });
+        
+        return true; 
     }
     else {
         if (username==='kwang') {
