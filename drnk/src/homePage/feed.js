@@ -8,9 +8,10 @@ import Stack from "react-bootstrap/Stack";
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import UserClick from "../sharedComponents/userClick";
-import getFeed from '../serverInterface/feedInterface';
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import './feed.css';
+import { feedSelector } from "../storeSlices/feedSlice";
+import { getFeed } from "../storeSlices/feedSlice";
 
 function FeedItem(props) {
     const [anchor, setAnchor] = useState(null);
@@ -59,15 +60,15 @@ function FeedItem(props) {
 }
 
 function mapStateToProps(state) {
-    return {feed: state.feed};
+    return {feed: feedSelector.selectAll(state)};
 }
 
 function Feed(props) {
-    //const [feedItems, newFeed] = useState(getFeed());
     const [c, cc] = useState(0);
+    const dispatch = useDispatch();
     const moreFeed = () => {
-        getFeed(require=c);
-        cc(c+1);
+        dispatch(getFeed({minLength: c}));
+        cc(c+2);
     }
     console.log('bigming', props.feed.length)
     const d = new Date();
@@ -77,7 +78,7 @@ function Feed(props) {
             </Col>
             <Col lg='8'>
                 <Stack gap='3'>
-                {props.feed.map((item) => <FeedItem details={item} key={d.getMilliseconds()+item.name+c} dn={c} />)}
+                {props.feed.map((item) => <FeedItem details={item} key={item.id} dn={c} />)}
                 </Stack>
             </Col>
             <Col lg='2'>

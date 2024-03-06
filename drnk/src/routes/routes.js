@@ -10,6 +10,7 @@ import Room from '../roomPage/room';
 import PublicProfile from "../profile/publicProfile";
 import { getAccount } from '../serverInterface/interface';
 import SD from '../navbars/speedDial';
+import Roulette from "../roulette/roulette";
 
 export const router = createBrowserRouter([
     {
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
                 loader: ({params}) => {
                     return getAccount(params.username);
                 }
+            },
+            {
+                path: "/roulette",
+                element: <Roulette />
             }
 
         ]
