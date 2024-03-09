@@ -7,31 +7,20 @@ const dummy = false;
 
 export async function log_in(username, password) {
     console.log('Attempted log-in with: ' + username, password);
-    if (!dummy) {
-        const res = await baseURL.post("/login", {
+   
+    return await fetch("/users/login", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
             user: {
-                username,
-                password
-            },
-
+                username: username,
+                password: password
+            }
         })
-        .then(token => {
-            console.log(token)
-        });
-        
-        return true; 
-    }
-    else {
-        if (username==='kwang') {
-            const cookies = new Cookies();
-            cookies.set('user', {'Username': 'kwang', 'token': true});
-            store.dispatch(setLoggedIn({token: true, 
-                Username: username}))
-            console.log("logged in");
-            return true;
-        }
-        return false;
-    }
+    }).then(x => x.json());
+    
 }
 
 export function logout() {
@@ -45,20 +34,21 @@ export function reset(username) {
     return true;
 }
 
-export function new_account(username, password) {
+export async function new_account(username, password) {
     console.log('New account with details: ' + username, password);
-    if (!dummy) {
-    fetch("/", {
+    return await fetch("/users", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
-        } ,
-        body: JSON.stringify({username: username, 
-            password: password,
-            type: 'new_account'})
-    }).then((res)=> console.log(res.json())); 
-    }
-    return true;
+        },
+        body: JSON.stringify({
+            user: {
+                username: username,
+                password: password,
+                type: 'new_account'
+            }
+        })
+    });
 }
 
 export function getAccount(username) {

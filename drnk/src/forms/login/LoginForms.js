@@ -8,7 +8,9 @@ import {Link, useNavigate} from "react-router-dom";
 import {log_in, new_account, reset} from "../../serverInterface/interface";
 import store from "../../storeSlices/store";
 import {setLoggedIn} from "../../storeSlices/loginSlice";
+import {authenticatedPost} from "../../serverInterface/httpUtils";
 import './LoginForm.css'
+
 
 function GiveToast(props) {
     return (
@@ -27,14 +29,16 @@ function LoginForm() {
     const navigate = useNavigate();
     const [showToast, setShowToast] = useState(false);
     const onSubmit = async (ev, userInput) => {
-        let token = await log_in(userInput["Username"], userInput["Password"]);
-        if (token) {
-            store.dispatch(setLoggedIn(token))
-            navigate('/');
-        }
-        else {
-            setShowToast(!showToast);
-        }
+        log_in(userInput["Username"], userInput["Password"]).then(res => {
+            console.log(res)
+            console.log(res.session)
+            if (res.session) {
+                localStorage.setItem('access_token', res.session)
+                authenticatedPost("rooms", { room: {name: "hi"}})
+                store.dispatch(setLoggedIn({ session: res.session, username: userInput["Username"] }))
+                navigate('/');
+            }
+        });
     }
     return (
         <React.Fragment>
@@ -68,15 +72,13 @@ function SignupForm() {
             setShowToast(!showToast);
             return;
         }
-        let token = new_account(userInputs["Username"], userInputs["Password"]);
-        if (token) {
-            store.dispatch(setLoggedIn(token))
-            console.log("signed up")
+        console.log("hio")
+        new_account(userInputs["Username"], userInputs["Password"]).then(tokens => {
+            console.log(tokens)
+            store.dispatch(setLoggedIn(tokens))
+            console.log("signed up")  
             navigate('/');
-        }
-        else {
-            setShowToast(!showToast);
-        }
+        }, e => setShowToast(!showToast))
     }
     return (
         <React.Fragment>

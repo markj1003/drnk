@@ -69,5 +69,6 @@
     "prop-types": "^15.8.1",
     "webpack": "^5.76.2",
     "webpack-dev-server": "^4.13.0"
-  }
+  },
+  "proxy": "http://localhost:3001"
 }
